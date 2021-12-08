@@ -12,10 +12,12 @@
 		
 		<!-- HQL ile SQL dönüşümünü sağlar dialect -->
 		<!-- <property name="dialect">org.hibernate.dialect.MySQLDialect</property>	-->	
-
+		
+<!-- 		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property> -->
+       
 		<!-- database connection POSTGRESQL -->
 		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-		<property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/mmdb</property>
+		<property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/aliergul_movie_db</property>
 		<property name="hibernate.connection.username">postgres</property>
 		<property name="hibernate.connection.password">root</property>
 

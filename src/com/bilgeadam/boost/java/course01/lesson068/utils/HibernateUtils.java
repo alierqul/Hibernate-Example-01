@@ -2,39 +2,33 @@ package com.bilgeadam.boost.java.course01.lesson068.utils;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-
-import com.bilgeadam.boost.java.course01.lesson068.entity.GenreEntity;
-import com.bilgeadam.boost.java.course01.lesson068.entity.LinkEntity;
 import com.bilgeadam.boost.java.course01.lesson068.entity.MovieEntity;
-import com.bilgeadam.boost.java.course01.lesson068.entity.TagEntity;
-import com.bilgeadam.boost.java.course01.lesson068.entity.UserEntity;
+import com.bilgeadam.boost.java.course01.lesson068.entity.RatingsEntity;
 
 public class HibernateUtils {
-	private static final SessionFactory sessionFactory = sessionFactory();
+  private static final SessionFactory sessionFactory = sessionFactory();
 
-	private static SessionFactory sessionFactory() {
-		try {
-			Configuration configuration = new Configuration();
+  private static SessionFactory sessionFactory() {
+    try {
+      Configuration configuration = new Configuration();
 
-			// entity class'larýmýzý buraya ekleyeceðiz
-			configuration.addAnnotatedClass(MovieEntity.class);
-			configuration.addAnnotatedClass(UserEntity.class);
-			configuration.addAnnotatedClass(LinkEntity.class);
-			configuration.addAnnotatedClass(TagEntity.class);
-			configuration.addAnnotatedClass(GenreEntity.class);
+      // entity class'larï¿½mï¿½zï¿½ buraya ekleyeceï¿½iz
+      // configuration.addAnnotatedClass(LinkEntity.class);
+      configuration.addAnnotatedClass(MovieEntity.class);
+      configuration.addAnnotatedClass(RatingsEntity.class);
+      // configuration.addAnnotatedClass(TagEntity.class);
 
-			SessionFactory factory = configuration.configure("hibernate.cfg.xml").buildSessionFactory();
+      SessionFactory factory = configuration.configure("hibernate.cfg.xml").buildSessionFactory();
 
-			return factory;
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
+      return factory;
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
 
-		return null;
-	}
-	
-	public static SessionFactory getSessionFactory() {
-		return sessionFactory;
-	}
+    return null;
+  }
+
+  public static SessionFactory getSessionFactory() {
+    return sessionFactory;
+  }
 }
