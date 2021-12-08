@@ -16,8 +16,8 @@
 		<!-- database connection POSTGRESQL -->
 		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
 		<property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/mmdb</property>
-		<property name="hibernate.connection.username">mmdb</property>
-		<property name="hibernate.connection.password">mmdb</property>
+		<property name="hibernate.connection.username">postgres</property>
+		<property name="hibernate.connection.password">root</property>
 
 		<!-- hibernate config -->
 		<property name="showsql">true</property>

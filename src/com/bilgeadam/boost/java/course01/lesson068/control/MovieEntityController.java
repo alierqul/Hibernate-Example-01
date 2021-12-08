@@ -24,7 +24,6 @@ public class MovieEntityController implements Controllable<MovieEntity>{
 		}
 	}
 	
-	// silmek
 	@Override
 	public void delete(MovieEntity entity) {
 		
@@ -44,7 +43,6 @@ public class MovieEntityController implements Controllable<MovieEntity>{
 		
 	}
 	
-	// güncellemek
 	@Override
 	public void update(MovieEntity entity) {
 		try {
@@ -66,13 +64,10 @@ public class MovieEntityController implements Controllable<MovieEntity>{
 		}
 	}
 	
-	// listelemek
 	@Override
 	public ArrayList<MovieEntity> list() {
 		Session session = databaseConnectionHibernate();
 		
-		// unutma: buradaki sorgulama entity sorgulamasý yani java classýna göre
-		// çaðýracaðýz.
 		String hql = "select str from MovieEntity as str where str.id>=:key";
 		TypedQuery<MovieEntity> typedQuery = session.createQuery(hql, MovieEntity.class);
 		
@@ -84,7 +79,6 @@ public class MovieEntityController implements Controllable<MovieEntity>{
 		return arrayList;
 	}
 	
-	// find
 	@Override
 	public MovieEntity find(long id) {
 		Session session = databaseConnectionHibernate();
@@ -106,7 +100,6 @@ public class MovieEntityController implements Controllable<MovieEntity>{
 		return null;
 	}
 	
-	// tek kayýt gonder
 	@Override
 	public MovieEntity singleResult(long id) {
 		return Controllable.super.singleResult(id);
