@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,11 +27,16 @@ public class MovieEntity implements Serializable {
   private String genres;
   @OneToMany(mappedBy = "movieid", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   private List<RatingsEntity> ratings = new ArrayList<RatingsEntity>();
+  @OneToMany(mappedBy = "movieid", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  private List<TagEntity> tags = new ArrayList<TagEntity>();
+
+  @OneToOne(mappedBy = "movie", fetch = FetchType.LAZY)
+  private LinkEntity links;
 
   @Override
   public String toString() {
-    return "MovieEntity [movieid=" + movieid + ", title=" + title + ", genres=" + genres
-        + ", ratings=" + ratings + "]";
+    return "MovieEntity \n[movieid=" + movieid + ", title=" + title + ", genres=" + genres
+        + "\n [Tags=" + tags + "]" + "\n [Links=" + links + "]" + "\n [ratings=" + ratings + "]";
   }
 
   // @OneToOne(mappedBy = "movie", cascade = CascadeType.ALL)

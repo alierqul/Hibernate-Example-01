@@ -23,10 +23,11 @@ public class TagEntity implements Serializable {
   private static final long serialVersionUID = 4055913823908486263L;
   @Id
   private long userid;
-  private long movieid;
+  // private long movieid;
   private String tag;
   private long timestamp;
-  @ManyToOne(fetch = FetchType.EAGER)
-  @JoinColumn(name = "movieid", insertable = false, updatable = false)
-  private MovieEntity tagMovie;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "movieid")
+  @ToString.Exclude
+  private MovieEntity movieid;
 }
