@@ -1,4 +1,4 @@
-package com.bilgeadam.boost.java.course01.lesson068.entity;
+package com.aliergul.app.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -33,10 +33,19 @@ public class MovieEntity implements Serializable {
   @OneToOne(mappedBy = "movie", fetch = FetchType.LAZY)
   private LinkEntity links;
 
+
   @Override
   public String toString() {
     return "MovieEntity \n[movieid=" + movieid + ", title=" + title + ", genres=" + genres
         + "\n [Tags=" + tags + "]" + "\n [Links=" + links + "]" + "\n [ratings=" + ratings + "]";
+  }
+
+
+  public MovieEntity(long movieid, String title, String genres) {
+    super();
+    this.movieid = movieid;
+    this.title = title;
+    this.genres = genres;
   }
 
   // @OneToOne(mappedBy = "movie", cascade = CascadeType.ALL)

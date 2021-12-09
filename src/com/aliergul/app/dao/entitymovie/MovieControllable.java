@@ -1,19 +1,18 @@
-package com.bilgeadam.boost.java.course01.lesson068.control;
+package com.aliergul.app.dao.entitymovie;
 
 import java.util.ArrayList;
 import org.hibernate.Session;
-import com.bilgeadam.boost.java.course01.lesson068.utils.HibernateUtils;
+import com.aliergul.app.utils.HibernateUtils;
 
-public interface Controllable<T> {
+public interface MovieControllable<T> {
   public void create(T entity);// ekleme
 
   public void delete(T entity);// silmek
 
   public void update(T entity);// g�ncelleme
 
-  default ArrayList<T> list() {// listeleme
-    return null;
-  }
+  public ArrayList<T> list(long startCount, long finishCount);
+
 
   default T find(long id) {
     return null;
@@ -23,7 +22,6 @@ public interface Controllable<T> {
     return null;
   }
 
-  // g�vdeli method
   default Session databaseConnectionHibernate() {
     return HibernateUtils.getSessionFactory().openSession();
   }

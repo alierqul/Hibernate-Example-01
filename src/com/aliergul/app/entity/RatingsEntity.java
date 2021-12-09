@@ -1,4 +1,4 @@
-package com.bilgeadam.boost.java.course01.lesson068.entity;
+package com.aliergul.app.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
