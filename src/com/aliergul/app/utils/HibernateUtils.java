@@ -15,7 +15,7 @@ public class HibernateUtils {
     try {
       Configuration configuration = new Configuration();
 
-      // entity class'lar�m�z� buraya ekleyece�iz
+      // entity class'larımızı buraya ekleyeceğiz
 
       configuration.addAnnotatedClass(MovieEntity.class);
       configuration.addAnnotatedClass(RatingsEntity.class);

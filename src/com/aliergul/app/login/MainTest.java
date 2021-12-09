@@ -1,6 +1,7 @@
 package com.aliergul.app.login;
 
 import java.io.IOException;
+import com.aliergul.app.utils.HibernateUtils;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,6 +16,10 @@ public class MainTest extends Application {
 
 
   public static void main(String[] args) {
+    // Önce Hibernate Hazırda beklemesi için bir oturum açıyoruz.
+    HibernateUtils util = new HibernateUtils();
+    util.getSessionFactory();
+
     launch();
   }
 
