@@ -32,7 +32,7 @@ public class UserDAOImpl implements IUserControllable {
       typedQuery.setParameter("email", u.getUserEmail().toLowerCase().trim());
       typedQuery.setParameter("password", u.getUserPassword());
       Optional<UserEntity> user = Optional.of(typedQuery.getSingleResult());
-      logger.info(TAG + "/ onLogin / isSuccesful \n" + u.toString());
+      logger.info(TAG + "/ onLogin / isSuccesful \n" + user.get().toString());
       return user;
     } catch (Exception e) {
       logger.error(TAG + "/ onLogin / ERROR:\n" + u.toString() + "\n" + e.getMessage());

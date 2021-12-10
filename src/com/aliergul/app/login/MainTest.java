@@ -1,6 +1,8 @@
 package com.aliergul.app.login;
 
 import java.io.IOException;
+import com.aliergul.app.controller.HomePageController;
+import com.aliergul.app.entity.UserEntity;
 import com.aliergul.app.utils.HibernateUtils;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +18,7 @@ public class MainTest extends Application {
 
 
   public static void main(String[] args) {
+
     // Önce Hibernate Hazırda beklemesi için bir oturum açıyoruz.
     HibernateUtils util = new HibernateUtils();
     util.getSessionFactory();
@@ -25,7 +28,7 @@ public class MainTest extends Application {
 
   @Override
   public void start(Stage stage) throws Exception {
-    scene = new Scene(loadFXML("LoginPage"), 800, 600);
+    scene = new Scene(loadFXML("LoginPage"), 900, 600);
     stage.setScene(scene);
     stage.show();
 
@@ -35,6 +38,16 @@ public class MainTest extends Application {
 
     scene.setRoot(loadFXML(fxml));
   }
+
+  public static void setHomePage(UserEntity user) throws IOException {
+    FXMLLoader fxmlLoader = new FXMLLoader(MainTest.class.getResource("HomePage.fxml"));
+
+    scene.setRoot(fxmlLoader.load());
+
+    HomePageController controller = fxmlLoader.getController();
+    controller.initUserInfo(user);
+  }
+
 
   private static Parent loadFXML(String fxml) throws IOException {
     FXMLLoader fxmlLoader = new FXMLLoader(MainTest.class.getResource(fxml + ".fxml"));

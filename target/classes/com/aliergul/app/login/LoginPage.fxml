@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -9,6 +10,7 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.BoxBlur?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -21,11 +23,11 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aliergul.app.controller.LoginController">
    <center>
-      <AnchorPane prefHeight="513.0" prefWidth="472.0" style="-fx-background-color: #5D4037;">
+      <AnchorPane prefHeight="513.0" prefWidth="472.0" style="-fx-background-color: #1b4145;">
          <children>
-            <AnchorPane layoutX="278.0" layoutY="141.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #FF5722;" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="50.0">
+            <AnchorPane layoutX="278.0" layoutY="141.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #FFD24D;" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="50.0">
                <children>
-                  <TabPane prefWidth="400.0" tabClosingPolicy="UNAVAILABLE">
+                  <TabPane blendMode="SCREEN" prefWidth="400.0" style="-fx-background-color: #FFD24D;" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
                       <Tab text="Giriş Yap">
                         <content>
@@ -182,10 +184,16 @@
                </effect>
             </AnchorPane>
          </children>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <effect>
+            <Glow />
+         </effect>
       </AnchorPane>
    </center>
    <left>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #5D4037;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1b4145;" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="29.0" layoutY="36.0" prefHeight="134.0" prefWidth="262.0" text="Film Tavsiye Robotum" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS" wrapText="true">
                <font>
@@ -193,6 +201,12 @@
                </font>
             </Label>
          </children>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <effect>
+            <Glow />
+         </effect>
       </AnchorPane>
    </left>
 </BorderPane>

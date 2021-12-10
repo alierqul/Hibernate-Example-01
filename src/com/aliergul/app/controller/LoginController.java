@@ -15,6 +15,8 @@ import javafx.scene.input.MouseEvent;
 
 public class LoginController {
   private UserEntity user;
+
+  // private OpenScene openScene;
   @FXML
   private Button btn_login;
 
@@ -40,7 +42,6 @@ public class LoginController {
   private TextField register_edt_username;
 
 
-
   @FXML
   void onRegisterClick(MouseEvent event) {
     register_btn.setDisable(true);
@@ -58,9 +59,10 @@ public class LoginController {
         alert.setTitle("Kayıt Başarısız");
         alert.setHeaderText("Lütfen Bilgilerinizi kontrol ediniz.");
       }
+      register_btn.setDisable(false);
       alert.show();
     }
-    register_btn.setDisable(false);
+
 
   }
 
@@ -93,21 +95,26 @@ public class LoginController {
     Optional<UserEntity> opt = dao.onLogin(new UserEntity(email, password));
 
     if (!opt.isEmpty()) {
+      btn_login.setDisable(!btn_login.isDisable());
       alert.setAlertType(AlertType.INFORMATION);
       alert.setTitle("Giriş Başarılı");
+
       try {
-        MainTest.setRoot("HomePage");
+
+        MainTest.setHomePage(opt.get());
       } catch (IOException e) {
-        e.printStackTrace();
+
       }
 
+
     } else {
+      btn_login.setDisable(!btn_login.isDisable());
       alert.setAlertType(AlertType.WARNING);
       alert.setTitle("Giriş Başarısız");
 
     }
     alert.show();
-    btn_login.setDisable(!btn_login.isDisable());
+
   }
 
 }

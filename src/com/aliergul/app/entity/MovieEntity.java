@@ -25,8 +25,10 @@ public class MovieEntity implements Serializable {
   private long movieid;
   private String title;
   private String genres;
+
   @OneToMany(mappedBy = "movieid", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   private List<RatingsEntity> ratings = new ArrayList<RatingsEntity>();
+
   @OneToMany(mappedBy = "movieid", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   private List<TagEntity> tags = new ArrayList<TagEntity>();
 
