@@ -23,7 +23,10 @@ public class RatingsEntity {
   @GeneratedValue(strategy = GenerationType.AUTO)
 
   private long rating_id;
-  private long userid;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "userid")
+  @ToString.Exclude
+  private UserEntity userid;
 
   private float rating;
   private long timestamp;

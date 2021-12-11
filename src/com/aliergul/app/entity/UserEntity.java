@@ -1,11 +1,16 @@
 package com.aliergul.app.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,6 +40,13 @@ public class UserEntity implements Serializable {
   private String userEmail;
   @Column(name = "user_password")
   private String userPassword;
+
+  @OneToMany(mappedBy = "userid", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  private List<TagEntity> tags = new ArrayList<TagEntity>();
+
+  @OneToMany(mappedBy = "userid", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  private List<RatingsEntity> ratings = new ArrayList<RatingsEntity>();
+
 
   public UserEntity(String userEmail, String userPassword) {
     this.userEmail = userEmail;

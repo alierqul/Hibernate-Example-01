@@ -26,8 +26,10 @@ public class TagEntity implements Serializable {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long tag_id;
-  private long userid;
-  // private long movieid;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "userid")
+  @ToString.Exclude
+  private UserEntity userid;
   private String tag;
   private long timestamp;
   @ManyToOne(fetch = FetchType.LAZY)

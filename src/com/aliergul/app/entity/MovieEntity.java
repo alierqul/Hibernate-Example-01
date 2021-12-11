@@ -8,39 +8,31 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
+@Entity
+@Table(name = "movies")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "movies")
+@ToString
 public class MovieEntity implements Serializable {
   private static final long serialVersionUID = -7770082978323250446L;
   @Id
   private long movieid;
   private String title;
   private String genres;
-
+  @ToString.Exclude
   @OneToMany(mappedBy = "movieid", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   private List<RatingsEntity> ratings = new ArrayList<RatingsEntity>();
-
+  @ToString.Exclude
   @OneToMany(mappedBy = "movieid", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   private List<TagEntity> tags = new ArrayList<TagEntity>();
 
-  @OneToOne(mappedBy = "movie", fetch = FetchType.LAZY)
-  private LinkEntity links;
-
-
-  @Override
-  public String toString() {
-    return "MovieEntity \n[movieid=" + movieid + ", title=" + title + ", genres=" + genres
-        + "\n [Tags=" + tags + "]" + "\n [Links=" + links + "]" + "\n [ratings=" + ratings + "]";
-  }
 
 
   public MovieEntity(long movieid, String title, String genres) {

@@ -5,7 +5,9 @@ import javax.persistence.TypedQuery;
 import org.hibernate.Session;
 import com.aliergul.app.entity.MovieEntity;
 
-public class MovieDAOImpl implements MovieControllable<MovieEntity> {
+public enum MovieDAOImpl implements MovieControllable<MovieEntity> {
+  getInstance;
+
   @Override
   public void create(MovieEntity entity) {
     try {
@@ -100,5 +102,19 @@ public class MovieDAOImpl implements MovieControllable<MovieEntity> {
   public MovieEntity singleResult(long id) {
     return MovieControllable.super.singleResult(id);
   }
+
+  @Override
+  public ArrayList<MovieEntity> search(String tag) {
+    Session session = databaseConnectionHibernate();
+
+    String hql =
+        "select str from MovieEntity as str where LIKE str.title :searchKEY OR str.tag :searchKEY";
+    TypedQuery<MovieEntity> typedQuery = session.createQuery(hql, MovieEntity.class);
+    typedQuery.setParameter("searchKEY", "%" + tag + "%");
+    ArrayList<MovieEntity> arrayList = (ArrayList<MovieEntity>) typedQuery.getResultList();
+
+    return arrayList;
+  }
+
 
 }

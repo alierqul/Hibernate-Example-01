@@ -13,6 +13,7 @@ public interface MovieControllable<T> {
 
   public ArrayList<T> list(long startCount, long finishCount);
 
+  public ArrayList<T> search(String tag);
 
   default T find(long id) {
     return null;

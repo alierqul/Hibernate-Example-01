@@ -18,17 +18,14 @@ public class MainTest extends Application {
 
 
   public static void main(String[] args) {
-
-    // Önce Hibernate Hazırda beklemesi için bir oturum açıyoruz.
     HibernateUtils util = new HibernateUtils();
     util.getSessionFactory();
-
     launch();
   }
 
   @Override
   public void start(Stage stage) throws Exception {
-    scene = new Scene(loadFXML("LoginPage"), 900, 600);
+    scene = new Scene(loadFXML("LoginPage"), 1200, 600);
     stage.setScene(scene);
     stage.show();
 

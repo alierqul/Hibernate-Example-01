@@ -91,13 +91,11 @@ public class LoginController {
     UserDAOImpl dao = new UserDAOImpl();
     String email = edt_user_email.getText();
     String password = edt_user_password.getText();
-    Alert alert = new Alert(AlertType.INFORMATION);
+
     Optional<UserEntity> opt = dao.onLogin(new UserEntity(email, password));
 
     if (!opt.isEmpty()) {
       btn_login.setDisable(!btn_login.isDisable());
-      alert.setAlertType(AlertType.INFORMATION);
-      alert.setTitle("Giriş Başarılı");
 
       try {
 
@@ -108,12 +106,13 @@ public class LoginController {
 
 
     } else {
+      Alert alert = new Alert(AlertType.WARNING);
       btn_login.setDisable(!btn_login.isDisable());
-      alert.setAlertType(AlertType.WARNING);
+      alert.setHeaderText("Email ya da Şifre Hatalı");
       alert.setTitle("Giriş Başarısız");
-
+      alert.show();
     }
-    alert.show();
+
 
   }
 
