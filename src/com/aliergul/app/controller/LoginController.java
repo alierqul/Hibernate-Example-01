@@ -45,7 +45,7 @@ public class LoginController {
   @FXML
   void onRegisterClick(MouseEvent event) {
     register_btn.setDisable(true);
-    UserDAOImpl dao = new UserDAOImpl();
+    UserDAOImpl dao = UserDAOImpl.getInstance;
 
     Alert alert = new Alert(AlertType.INFORMATION);
 
@@ -88,7 +88,7 @@ public class LoginController {
   void onClickBtnLogin(MouseEvent event) {
 
     btn_login.setDisable(!btn_login.isDisable());
-    UserDAOImpl dao = new UserDAOImpl();
+    UserDAOImpl dao = UserDAOImpl.getInstance;
     String email = edt_user_email.getText();
     String password = edt_user_password.getText();
 

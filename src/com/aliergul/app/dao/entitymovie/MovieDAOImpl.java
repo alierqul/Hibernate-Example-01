@@ -1,6 +1,7 @@
 package com.aliergul.app.dao.entitymovie;
 
 import java.util.ArrayList;
+import java.util.Optional;
 import javax.persistence.TypedQuery;
 import org.hibernate.Session;
 import com.aliergul.app.entity.MovieEntity;
@@ -114,6 +115,38 @@ public enum MovieDAOImpl implements MovieControllable<MovieEntity> {
     ArrayList<MovieEntity> arrayList = (ArrayList<MovieEntity>) typedQuery.getResultList();
 
     return arrayList;
+  }
+
+  @Override
+  public Double getAVGRating(MovieEntity movie) {
+    Session session = databaseConnectionHibernate();
+    String hql = "select avg(rating) from RatingsEntity as r where r.movie=:movieID";
+    TypedQuery<Double> typedQuery = session.createQuery(hql, Double.class);
+    typedQuery.setParameter("movieID", movie);
+    return typedQuery.getSingleResult();
+  }
+
+  @Override
+  public long getSumRating(MovieEntity movie) {
+    Session session = databaseConnectionHibernate();
+    String hql = "select count(*) from RatingsEntity as r where r.movie=:movieID";
+    TypedQuery<Long> typedQuery = session.createQuery(hql, Long.class);
+    typedQuery.setParameter("movieID", movie);
+    return typedQuery.getSingleResult();
+  }
+
+  @Override
+  public String getAllTag(MovieEntity movie) {
+    Session session = databaseConnectionHibernate();
+    String hql =
+        "select string_agg(tag,'#')  from TagEntity group by :movieID having movieid=:movieID";
+    TypedQuery<String> typedQuery = session.createQuery(hql, String.class);
+    typedQuery.setParameter("movieID", movie);
+    Optional<String> opt = Optional.of(typedQuery.getResultList().get(0));
+
+
+
+    return !opt.isEmpty() ? opt.get().replace(",", "#") : "";
   }
 
 

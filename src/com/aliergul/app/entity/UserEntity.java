@@ -41,10 +41,10 @@ public class UserEntity implements Serializable {
   @Column(name = "user_password")
   private String userPassword;
 
-  @OneToMany(mappedBy = "userid", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   private List<TagEntity> tags = new ArrayList<TagEntity>();
 
-  @OneToMany(mappedBy = "userid", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   private List<RatingsEntity> ratings = new ArrayList<RatingsEntity>();
 
 

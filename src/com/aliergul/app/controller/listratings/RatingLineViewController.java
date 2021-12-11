@@ -50,10 +50,9 @@ public class RatingLineViewController implements Initializable {
 
   }
 
-
   public void setTicket(RatingsEntity item) {
     rating_detail_date.setText(new Date(item.getTimestamp()).toString());
-    rating_detail_title.setText(item.getMovieid().getTitle());
+    rating_detail_title.setText(item.getMovie().getTitle());
     rating_detail_rating.setRating(item.getRating());
   }
 

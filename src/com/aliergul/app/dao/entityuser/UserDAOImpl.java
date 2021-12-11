@@ -1,11 +1,15 @@
 package com.aliergul.app.dao.entityuser;
 
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import javax.persistence.TypedQuery;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
+import com.aliergul.app.entity.MovieEntity;
 import com.aliergul.app.entity.UserEntity;
 
 /**
@@ -15,7 +19,9 @@ import com.aliergul.app.entity.UserEntity;
  *
  */
 
-public class UserDAOImpl implements IUserControllable {
+public enum UserDAOImpl implements IUserControllable {
+  getInstance;
+
   /*
    * import org.apache.log4j.LogManager; import org.apache.log4j.Logger;
    */
@@ -56,6 +62,28 @@ public class UserDAOImpl implements IUserControllable {
 
     }
     return false;
+  }
+
+  @Override
+  public Set<MovieEntity> getMyMovies(UserEntity u) {
+    Set<MovieEntity> list = new HashSet<>();
+    Session session = databaseConnectionHibernate();
+    String hql =
+        "select tag.movie from TagEntity as tag where tag.user =:searchKEY order by timestamp desc";
+    TypedQuery<MovieEntity> typedQuery = session.createQuery(hql, MovieEntity.class);
+    typedQuery.setParameter("searchKEY", u);
+    typedQuery.setMaxResults(5);
+    List<MovieEntity> arrayList = typedQuery.getResultList();
+    list.addAll(arrayList);
+    session = databaseConnectionHibernate();
+    String hql2 =
+        "select ra.movie from RatingsEntity as ra where ra.user =:searchKEY order by timestamp desc";
+    TypedQuery<MovieEntity> typedQuery2 = session.createQuery(hql2, MovieEntity.class);
+    typedQuery2.setParameter("searchKEY", u);
+    typedQuery2.setMaxResults(5);
+    List<MovieEntity> arrayList2 = typedQuery2.getResultList();
+    list.addAll(arrayList2);
+    return list;
   }
 
 }

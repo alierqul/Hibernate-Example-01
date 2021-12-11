@@ -1,11 +1,10 @@
 package com.aliergul.app.controller;
 
-import java.util.HashSet;
-import java.util.Set;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import com.aliergul.app.controller.listratings.RatingListViewCell;
 import com.aliergul.app.controller.userlistmovie.MovieListViewCell;
+import com.aliergul.app.dao.entityuser.UserDAOImpl;
 import com.aliergul.app.entity.MovieEntity;
 import com.aliergul.app.entity.RatingsEntity;
 import com.aliergul.app.entity.TagEntity;
@@ -62,7 +61,6 @@ public class HomePageController {
 
 
   public void initUserInfo(UserEntity user) {
-    logger.info(TAG + "/initUserInfo start");
     this.user = user;
     homepage_home_tv_username.setText(user.getUserName());
     homepage_home_tv_email.setText(user.getUserEmail());
@@ -78,7 +76,7 @@ public class HomePageController {
           }
         });
 
-    movies.addAll(getMyMovies());
+    movies.addAll(UserDAOImpl.getInstance.getMyMovies(user));
 
     homepage_home_lv_movie.setItems(movies);
     homepage_home_lv_movie
@@ -90,15 +88,7 @@ public class HomePageController {
           }
         });
 
-
   }
 
-  public Set<MovieEntity> getMyMovies() {
-    Set<MovieEntity> myMovies = new HashSet<>();
-    user.getTags().stream().map(v -> v.getMovieid()).forEach(myMovies::add);
-    ratings.stream().map(v -> v.getMovieid()).forEach(myMovies::add);
-    user.getRatings().forEach(System.out::println);
-    return myMovies;
-  }
 
 }

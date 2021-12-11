@@ -26,7 +26,7 @@ public class RatingsEntity {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "userid")
   @ToString.Exclude
-  private UserEntity userid;
+  private UserEntity user;
 
   private float rating;
   private long timestamp;
@@ -34,7 +34,7 @@ public class RatingsEntity {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "movieid")
   @ToString.Exclude
-  private MovieEntity movieid;
+  private MovieEntity movie;
 
 
 

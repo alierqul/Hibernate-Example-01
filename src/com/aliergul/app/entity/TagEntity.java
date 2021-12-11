@@ -29,11 +29,11 @@ public class TagEntity implements Serializable {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "userid")
   @ToString.Exclude
-  private UserEntity userid;
+  private UserEntity user;
   private String tag;
   private long timestamp;
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "movieid")
   @ToString.Exclude
-  private MovieEntity movieid;
+  private MovieEntity movie;
 }
