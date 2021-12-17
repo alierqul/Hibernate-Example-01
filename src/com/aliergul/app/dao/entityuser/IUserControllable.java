@@ -14,6 +14,8 @@ public interface IUserControllable {
 
   public Set<MovieEntity> getMyMovies(UserEntity u);
 
+  public UserEntity find(long id);
+
   default Session databaseConnectionHibernate() {
     return HibernateUtils.getSessionFactory().openSession();
   }

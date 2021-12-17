@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -27,6 +28,7 @@ public class MovieEntity implements Serializable {
 
   private long movieid;
   private String title;
+  @Column(name = "genres", nullable = false)
   private String genres;
 
   @ToString.Exclude

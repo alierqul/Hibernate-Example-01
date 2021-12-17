@@ -86,4 +86,10 @@ public enum UserDAOImpl implements IUserControllable {
     return list;
   }
 
+  @Override
+  public UserEntity find(long id) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
 }
